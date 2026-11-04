@@ -1,94 +1,80 @@
 (() => {
+  'use strict';
   const movies = Array.isArray(window.VS_MOVIES) ? window.VS_MOVIES : [];
-  const grid = document.getElementById('movieGrid');
+  const shelves = {
+    'now-running': document.getElementById('nowRunningGrid'),
+    'advance-booking': document.getElementById('advanceBookingGrid'),
+    'coming-soon': document.getElementById('comingSoonGrid'),
+    'highlights': document.getElementById('highlightsGrid')
+  };
   const searchInput = document.getElementById('searchInput');
   const clearSearch = document.getElementById('clearSearch');
   const emptyState = document.getElementById('emptyState');
   const filterTabs = [...document.querySelectorAll('.filter-tab')];
+  const shelfSections = [...document.querySelectorAll('[data-shelf]')];
   const menuToggle = document.getElementById('menuToggle');
   const primaryNav = document.getElementById('primaryNav');
   const dialog = document.getElementById('movieDialog');
   const dialogContent = document.getElementById('dialogContent');
   let activeFilter = 'all';
-
-  const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const statusIcon = status => status === 'now-running' ? '▣' : status === 'advance-booking' ? '◷' : '✦';
-  const posterClass = status => status === 'now-running' ? 'poster-running' : status === 'advance-booking' ? 'poster-booking' : 'poster-upcoming';
-
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const moneyOrText = value => esc(value);
+  const detailPath = movie => `movies/${encodeURIComponent(movie.slug)}/index.html`;
+  const statusClass = status => status === 'now-running' ? 'poster-running' : status === 'advance-booking' ? 'poster-booking' : status === 'highlights' ? 'poster-highlight' : 'poster-upcoming';
   function cardTemplate(movie) {
-    const metrics = movie.metrics.slice(0, 3).map(([label, value]) => `
-      <div class="metric"><span>${escapeHTML(label)}</span><strong>${escapeHTML(value)}</strong></div>`).join('');
-    return `
-      <article class="movie-card">
-        <div class="movie-poster ${posterClass(movie.status)}">
-          <span class="poster-kicker">VS MOVIE HUB · PREVIEW</span>
-          <span class="poster-symbol">${statusIcon(movie.status)}</span>
-          <span class="poster-title">${escapeHTML(movie.title)}</span>
-          <span class="poster-status">${escapeHTML(movie.statusLabel)}</span>
-        </div>
-        <div class="movie-card-body">
-          <div class="movie-card-meta"><span>${escapeHTML(movie.language)}</span><span>${escapeHTML(movie.releaseDate)}</span></div>
-          <h3>${escapeHTML(movie.title)}</h3>
-          <p class="movie-subtitle">${escapeHTML(movie.subtitle)}</p>
-          <div class="metric-list">${metrics}</div>
-          <p class="update-note"><span class="update-dot"></span>${escapeHTML(movie.update)}</p>
-          <button class="details-button" type="button" data-movie-id="${escapeHTML(movie.id)}">View movie layout <span>↗</span></button>
-        </div>
-      </article>`;
+    const metrics = (movie.metrics || []).slice(0,3).map(([label,value]) => `<div class="metric"><span>${esc(label)}</span><strong>${moneyOrText(value)}</strong></div>`).join('');
+    const poster = movie.poster ? `<img class="poster-image" src="${esc(movie.poster)}" alt="${esc(movie.title)} poster artwork" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="poster-credit">Poster artwork · ${esc(movie.posterSource ? new URL(movie.posterSource).hostname.replace(/^www\./,'') : 'source')}</span>` : `<span class="poster-fallback">${esc(movie.title)}</span>`;
+    return `<article class="movie-card">
+      <a class="movie-poster ${statusClass(movie.status)}" href="${detailPath(movie)}" aria-label="Open ${esc(movie.title)} details">${poster}<span class="poster-status">${esc(movie.statusLabel)}</span></a>
+      <div class="movie-card-body">
+        <div class="movie-card-meta"><span>${esc(movie.language)}</span><span>${esc(movie.releaseDate)}</span></div>
+        <h4><a href="${detailPath(movie)}">${esc(movie.title)}</a></h4>
+        <p class="movie-subtitle">${esc(movie.subtitle)}</p>
+        <div class="metric-list">${metrics}</div>
+        <p class="update-note"><span class="update-dot"></span>${esc(movie.update)}</p>
+        <a class="details-button" href="${detailPath(movie)}">Full movie report <span>↗</span></a>
+      </div>
+    </article>`;
   }
-
+  function isMatch(movie, query) {
+    const searchable = [movie.title,movie.subtitle,movie.language,movie.statusLabel,(movie.genres||[]).join(' '),movie.releaseDate].join(' ').toLowerCase();
+    return searchable.includes(query);
+  }
   function render() {
     const query = searchInput.value.trim().toLowerCase();
-    const visible = movies.filter(movie => {
-      const matchesFilter = activeFilter === 'all' || movie.status === activeFilter;
-      const searchable = [movie.title, movie.subtitle, movie.language, movie.statusLabel].join(' ').toLowerCase();
-      return matchesFilter && searchable.includes(query);
+    let matchCount = 0;
+    Object.entries(shelves).forEach(([key,grid]) => {
+      const matchingFilter = activeFilter === 'all' || activeFilter === key;
+      const list = matchingFilter ? movies.filter(movie => movie.status === key && isMatch(movie,query)) : [];
+      grid.innerHTML = list.map(cardTemplate).join('');
+      const section = document.querySelector(`[data-shelf="${key}"]`);
+      section.hidden = list.length === 0;
+      matchCount += list.length;
     });
-    grid.innerHTML = visible.map(cardTemplate).join('');
-    emptyState.hidden = visible.length !== 0;
-    grid.hidden = visible.length === 0;
+    emptyState.hidden = matchCount > 0;
     clearSearch.hidden = !query;
-    document.querySelectorAll('.filter-tab').forEach(tab => {
+    filterTabs.forEach(tab => {
       const selected = tab.dataset.filter === activeFilter;
-      tab.classList.toggle('active', selected);
-      tab.setAttribute('aria-selected', String(selected));
+      tab.classList.toggle('active',selected);
+      tab.setAttribute('aria-selected',String(selected));
     });
+    shelfSections.forEach(section => section.classList.toggle('filtered-out',section.hidden));
   }
-
-  filterTabs.forEach(tab => tab.addEventListener('click', () => {
-    activeFilter = tab.dataset.filter;
-    render();
+  filterTabs.forEach(tab => tab.addEventListener('click',() => { activeFilter=tab.dataset.filter; render(); }));
+  searchInput.addEventListener('input',render);
+  clearSearch.addEventListener('click',() => { searchInput.value=''; render(); searchInput.focus(); });
+  document.querySelectorAll('[data-nav-filter]').forEach(link => link.addEventListener('click',() => {
+    activeFilter=link.dataset.navFilter; render();
+    primaryNav.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false');
   }));
-  searchInput.addEventListener('input', render);
-  clearSearch.addEventListener('click', () => { searchInput.value = ''; render(); searchInput.focus(); });
-
-  grid.addEventListener('click', event => {
-    const button = event.target.closest('[data-movie-id]');
-    if (!button) return;
-    const movie = movies.find(item => item.id === button.dataset.movieId);
-    if (!movie) return;
-    dialogContent.innerHTML = `
-      <div class="dialog-eyebrow">PHASE 1 MOVIE PAGE TEMPLATE</div>
-      <h2 id="dialogTitle">${escapeHTML(movie.title)}</h2>
-      <p>${escapeHTML(movie.summary)}</p>
-      <div class="dialog-data">${movie.metrics.map(([label, value]) => `<div><span>${escapeHTML(label)}</span><strong>${escapeHTML(value)}</strong></div>`).join('')}</div>
-      <p class="dialog-footnote">${escapeHTML(movie.update)}. Figures are intentionally not invented in this preview.</p>`;
-    dialog.showModal();
+  document.getElementById('dialogClose').addEventListener('click',() => dialog.close());
+  dialog.addEventListener('click',event => { if(event.target===dialog) dialog.close(); });
+  menuToggle.addEventListener('click',() => {
+    const expanded=menuToggle.getAttribute('aria-expanded')==='true';
+    menuToggle.setAttribute('aria-expanded',String(!expanded)); primaryNav.classList.toggle('open',!expanded);
   });
-  document.getElementById('dialogClose').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
-
-  menuToggle.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!expanded));
-    primaryNav.classList.toggle('open', !expanded);
-  });
-  primaryNav.addEventListener('click', event => {
-    if (event.target.closest('a')) {
-      primaryNav.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
+  primaryNav.addEventListener('click',event => { if(event.target.closest('a')) { primaryNav.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false'); } });
   document.getElementById('year').textContent = new Date().getFullYear();
+  document.body.addEventListener('error',event => { const img=event.target; if(img && img.classList && img.classList.contains('poster-image')) { img.style.display='none'; img.closest('.movie-poster')?.classList.add('poster-image-missing'); } }, true);
   render();
 })();
