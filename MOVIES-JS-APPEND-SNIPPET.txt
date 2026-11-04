@@ -1,0 +1,14 @@
+/* VS Movie Hub · Phase 5 live audience loader
+   Paste this block ONCE at the very end of the existing root-level movies.js file.
+   This enables the counter on the homepage, rankings, compare, release calendar,
+   and movie detail pages that already load movies.js.
+*/
+(() => {
+  if (window.__VS_LIVE_PRESENCE_LOADED__) return;
+  window.__VS_LIVE_PRESENCE_LOADED__ = true;
+  const script = document.createElement("script");
+  script.type = "module";
+  script.src = "live-presence.js";
+  script.dataset.vsLivePresence = "true";
+  document.head.appendChild(script);
+})();

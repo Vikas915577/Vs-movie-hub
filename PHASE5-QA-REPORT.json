@@ -1,0 +1,25 @@
+{
+  "phase": "5",
+  "feature": "Live audience counter",
+  "date": "2026-11-04",
+  "implementation": "Supabase Realtime Presence",
+  "databaseTablesRequired": 0,
+  "usesRandomOrSimulatedCount": false,
+  "tracksPersonalIdentity": false,
+  "counts": "Active browser sessions; not unique people",
+  "pages": "Pages that load movies.js, plus About page after the one-line install snippet",
+  "supabaseSdk": "@supabase/supabase-js 2.118.0 pinned",
+  "githubPush": "blocked: GitHub API returned HTTP 403 Resource not accessible by integration",
+  "backendConfigured": false,
+  "errors": [],
+  "status": "PACKAGE_READY_NEEDS_SUPABASE_CONFIGURATION_AND_MANUAL_UPLOAD",
+  "checks": {
+    "javascriptSyntaxNodeCheck": "PASS",
+    "presenceEventsAndSessionTrackingAssertions": "PASS",
+    "noDatabaseMigrationRequired": "PASS",
+    "noRandomCount": "PASS",
+    "secretKeyGuard": "PASS",
+    "zipIntegrity": "PASS"
+  },
+  "deploymentNote": "Not deployed. GitHub write API rejected update with HTTP 403; manual upload and a dedicated Supabase project configuration are required."
+}

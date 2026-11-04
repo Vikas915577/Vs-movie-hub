@@ -1,0 +1,72 @@
+/* Compact header badge; inherits the existing VS Movie Hub dark/gold palette. */
+.topbar .live-presence-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  min-height: 30px;
+  margin-left: 2px;
+  padding: 5px 9px;
+  border: 1px solid #34413f;
+  border-radius: 999px;
+  background: #111b1b;
+  color: #dcebe7;
+  font: 600 10px/1.1 'DM Sans', Arial, sans-serif;
+  white-space: nowrap;
+}
+.topbar .live-presence-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #8993a0;
+}
+.topbar .live-presence-label {
+  color: #aeb8c4;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .8px;
+}
+.topbar .live-presence-count {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.topbar .live-presence-caption {
+  color: #aab6b3;
+  font-size: 9px;
+  font-weight: 500;
+}
+.topbar .live-presence-badge[data-state="online"] {
+  border-color: #2b5a50;
+  background: rgba(35, 93, 79, .18);
+}
+.topbar .live-presence-badge[data-state="online"] .live-presence-dot {
+  background: #72d7c4;
+  box-shadow: 0 0 9px rgba(114, 215, 196, .8);
+}
+.topbar .live-presence-badge[data-state="setup"] .live-presence-dot,
+.topbar .live-presence-badge[data-state="offline"] .live-presence-dot,
+.topbar .live-presence-badge[data-state="error"] .live-presence-dot {
+  background: #8b929c;
+}
+.topbar .live-presence-badge[data-state="setup"] .live-presence-label,
+.topbar .live-presence-badge[data-state="offline"] .live-presence-label,
+.topbar .live-presence-badge[data-state="error"] .live-presence-label {
+  color: #c2a16a;
+}
+@media (max-width: 650px) {
+  .topbar .live-presence-badge {
+    gap: 4px;
+    min-height: 28px;
+    margin-left: auto;
+    padding: 4px 7px;
+  }
+  .topbar .live-presence-count { font-size: 11px; }
+  .topbar .live-presence-caption { display: none; }
+}
+@media (max-width: 380px) {
+  .topbar .live-presence-label { display: none; }
+}

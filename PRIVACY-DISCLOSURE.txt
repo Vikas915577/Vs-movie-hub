@@ -1,0 +1,8 @@
+Suggested privacy notice for privacy.html:
+
+Live audience indicator: VS Movie Hub may use Supabase Realtime Presence to display the
+number of active browser sessions currently connected to the site. The site does not ask
+for or store a visitor's name, email address, or precise location for this counter. Each
+connection shares only a minimal online status while connected; multiple tabs or devices
+may be counted as separate sessions. Supabase may process technical connection metadata
+as part of providing its service, subject to Supabase's privacy terms.

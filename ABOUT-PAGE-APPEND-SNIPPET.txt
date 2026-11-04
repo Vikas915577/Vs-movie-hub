@@ -1,0 +1,4 @@
+Add this one line to about.html immediately before its closing </body> tag.
+It enables the same counter on the About page (which currently does not load movies.js).
+
+<script type="module" src="live-presence.js"></script>
