@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "errors": [],
+  "movieDetailPages": 20,
+  "sitemapUrls": 28,
+  "fileLayout": "flat root-level; no subfolders",
+  "jsSyntax": "PASS"
+}
