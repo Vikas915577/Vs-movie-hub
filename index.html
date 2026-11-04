@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="description" content="VS Movie Hub tracks cinema releases, advance booking and movie box office collections with clear source notes.">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/styles.css">
+  <title>VS Movie Hub — Box Office, Advance Booking & Upcoming Movies</title>
+  <meta property="og:title" content="VS Movie Hub — Every Film. Every Collection.">
+  <meta property="og:description" content="Track movies in cinemas, advance bookings and upcoming releases.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "VS Movie Hub",
+    "description": "Movie releases, advance booking and box office tracking.",
+    "inLanguage": "en-IN"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home" aria-label="VS Movie Hub home">
+        <span class="brand-mark">VS</span>
+        <span class="brand-copy"><strong>VS <em>MOVIE HUB</em></strong><small>EVERY FILM. EVERY COLLECTION.</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">☰</button>
+      <nav class="primary-nav" id="primaryNav" aria-label="Main navigation">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#now-running" data-nav="now-running">Now Running</a>
+        <a class="nav-link" href="#advance-booking" data-nav="advance-booking">Advance Booking</a>
+        <a class="nav-link" href="#coming-soon" data-nav="coming-soon">Coming Soon</a>
+        <a class="nav-link" href="#rankings">Rankings</a>
+      </nav>
+      <a class="header-search" href="#movieSearch" aria-label="Jump to movie search">⌕</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-wrap" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> THE MOVIE TRACKER FOR EVERY FAN</div>
+        <h1>Know what’s <span>running.</span><br>See what’s <span>next.</span></h1>
+        <p>Movie releases, advance booking and box office performance — all in one place.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#now-running">Explore box office <span>↗</span></a>
+          <a class="button button-quiet" href="#coming-soon">Upcoming releases</a>
+        </div>
+        <div class="hero-note"><span class="note-icon">i</span> Collection figures will show their source and last-updated time.</div>
+      </div>
+      <div class="hero-art" aria-label="Decorative cinema spotlight artwork">
+        <div class="spotlight spotlight-one"></div><div class="spotlight spotlight-two"></div>
+        <div class="reel-card reel-back"><span>VS</span><small>THE BIG SCREEN</small></div>
+        <div class="reel-card reel-front"><div class="reel-hole">▶</div><strong>BOX OFFICE</strong><small>TRACKER</small></div>
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <span class="art-tag tag-top">CINEMA • DATA • STORIES</span>
+        <span class="art-tag tag-bottom">INDIA + WORLDWIDE</span>
+      </div>
+    </section>
+
+    <section class="quick-stats section-wrap" aria-label="Platform coverage">
+      <div class="stat-item"><span class="stat-icon">▣</span><span><strong>Now Running</strong><small>Collections from cinemas</small></span></div>
+      <div class="stat-item"><span class="stat-icon">◷</span><span><strong>Advance Booking</strong><small>Pre-release ticket interest</small></span></div>
+      <div class="stat-item"><span class="stat-icon">✦</span><span><strong>Coming Soon</strong><small>Upcoming release calendar</small></span></div>
+      <div class="stat-item"><span class="stat-icon">↗</span><span><strong>Rankings</strong><small>Records and comparisons</small></span></div>
+    </section>
+
+    <section class="section-wrap discover-section" aria-labelledby="discoverTitle">
+      <div class="section-heading">
+        <div><div class="eyebrow">FIND YOUR NEXT MOVIE</div><h2 id="discoverTitle">Explore the <span>movie board</span></h2></div>
+        <span class="preview-label">PHASE 1 PREVIEW</span>
+      </div>
+      <div class="search-panel" id="movieSearch">
+        <span class="search-symbol">⌕</span>
+        <input id="searchInput" type="search" placeholder="Search a movie, language or status..." aria-label="Search movies">
+        <button id="clearSearch" class="clear-search" type="button" hidden>Clear</button>
+        <span class="search-hint">Try a title or language</span>
+      </div>
+      <div class="filter-row" role="tablist" aria-label="Movie status filters">
+        <button class="filter-tab active" type="button" role="tab" aria-selected="true" data-filter="all">All movies <span>03</span></button>
+        <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="now-running">Now Running</button>
+        <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="advance-booking">Advance Booking</button>
+        <button class="filter-tab" type="button" role="tab" aria-selected="false" data-filter="coming-soon">Coming Soon</button>
+      </div>
+      <div class="demo-notice"><span>!</span><p><strong>Preview content:</strong> These are layout examples, not live movie listings or real collection figures. Verified movie data is added in Phase 2.</p></div>
+      <div class="movie-grid" id="movieGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden><strong>No matching movies</strong><span>Try another title or clear your search.</span></div>
+    </section>
+
+    <section class="status-explainer section-wrap" aria-labelledby="statusTitle">
+      <div class="section-heading"><div><div class="eyebrow">ONE MOVIE. THE RIGHT STAGE.</div><h2 id="statusTitle">How movie status <span>works</span></h2></div></div>
+      <div class="status-flow">
+        <article class="status-step"><span class="step-number">01</span><div class="step-icon">✦</div><h3>Coming Soon</h3><p>Release date, languages, cast details and official announcements.</p><small>Before release</small></article>
+        <div class="flow-arrow">→</div>
+        <article class="status-step"><span class="step-number">02</span><div class="step-icon">◷</div><h3>Advance Booking</h3><p>Booking-open status, shows and ticket figures only when sourced.</p><small>Pre-release window</small></article>
+        <div class="flow-arrow">→</div>
+        <article class="status-step"><span class="step-number">03</span><div class="step-icon">▣</div><h3>Now Running</h3><p>Day-wise India and worldwide box office collection reports.</p><small>In cinemas</small></article>
+      </div>
+    </section>
+
+    <section class="rankings-teaser section-wrap" id="rankings">
+      <div class="rankings-copy"><div class="eyebrow">COMING IN A LATER PHASE</div><h2>Records worth <span>remembering.</span></h2><p>Yearly charts, opening-day records, worldwide rankings and movie comparisons will be added after the core movie pages are ready.</p></div>
+      <div class="ranking-pills"><span>Top India Net</span><span>Worldwide Gross</span><span>Biggest Openers</span><span>Movie vs Movie</span></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main section-wrap">
+      <a class="brand footer-brand" href="#home"><span class="brand-mark">VS</span><span class="brand-copy"><strong>VS <em>MOVIE HUB</em></strong><small>EVERY FILM. EVERY COLLECTION.</small></span></a>
+      <p>Box office tracking with clear context, transparent sources and movie-first discovery.</p>
+      <div class="footer-links"><a href="about.html">About</a><a href="methodology.html">Data methodology</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div>
+    </div>
+    <div class="footer-bottom section-wrap"><span>© <span id="year"></span> VS Movie Hub</span><span>Independent movie information project · Not affiliated with film studios</span></div>
+  </footer>
+  <dialog class="movie-dialog" id="movieDialog" aria-labelledby="dialogTitle">
+    <button class="dialog-close" id="dialogClose" type="button" aria-label="Close details">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+  <script src="assets/movies.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "VS Movie Hub",
+  "short_name": "VS Movie Hub",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0d12",
+  "theme_color": "#0b0d12",
+  "icons": [{"src":"assets/favicon.svg","sizes":"any","type":"image/svg+xml"}]
+}
