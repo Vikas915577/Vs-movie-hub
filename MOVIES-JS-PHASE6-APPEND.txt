@@ -1,13 +1,15 @@
-/* VS Movie Hub · Phase 6 loader. Append once after the closing ]; in movies.js.
-   Do NOT append the old Phase 5 Supabase loader unless you later choose to enable backend Presence.
+/* VS Movie Hub · Phase 6 loader. Append ONCE after the closing ]; in movies.js.
+   Keep all 20 movie records unchanged. Do NOT add the Phase 5 Supabase loader.
 */
 (() => {
   if (window.__VS_PHASE6_LOADER__) return;
   window.__VS_PHASE6_LOADER__ = true;
-  const currentScript = document.currentScript;
+  const source = document.currentScript && document.currentScript.src
+    ? document.currentScript.src
+    : window.location.href;
   const loader = document.createElement('script');
-  loader.src = new URL('./phase6.js', currentScript && currentScript.src ? currentScript.src : location.href).href;
-  loader.defer = true;
-  loader.onerror = () => console.warn('VS Movie Hub Phase 6 features could not load.');
+  loader.src = new URL('./phase6-loader.js', source).href;
+  loader.async = true;
+  loader.onerror = () => console.warn('VS Movie Hub Phase 6 loader could not load.');
   document.head.appendChild(loader);
 })();

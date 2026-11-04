@@ -1,0 +1,49 @@
+{
+  "auditDate": "2026-11-04",
+  "repository": "Vikas915577/Vs-movie-hub",
+  "branch": "main",
+  "latestCommitSeen": "a57f4527fa359d1243c22b60af31d1c07b573307",
+  "checks": {
+    "phase6AssetsUploaded": true,
+    "watchlistPageUploaded": true,
+    "offlinePageUploaded": true,
+    "serviceWorkerUploaded": true,
+    "updatedManifestAndPngIconsUploaded": true,
+    "moviesJsPhase6LoaderIntegrated": false,
+    "mainHomepageLoadsPhase6": false,
+    "movieDetailPagesLoadPhase6": false,
+    "staticInfoPagesLoadPhase6": false,
+    "watchlistUsesSharedPhase6CssLoader": false,
+    "privacyDisclosureAdded": false,
+    "phase5SupabaseFilesRemainDormant": true,
+    "serviceWorkerRunsFromHomepage": false,
+    "sitemapHas28Urls": true,
+    "searchConsoleVerificationFilePresent": false
+  },
+  "rootCause": "The Phase 6/7 assets and snippets were uploaded, but the actual integration edits to movies.js, watchlist.html, static information pages, and privacy.html were not applied. phase6.js does not load phase6.css itself.",
+  "repairsIncludedInThisPatch": [
+    "phase6-loader.js loads phase6.css before phase6.js",
+    "safe one-time movies.js append snippet",
+    "static-page script snippet",
+    "watchlist script replacement instruction",
+    "privacy disclosure paragraph",
+    "Google Search Console status and next-step guide"
+  ],
+  "googleSearchCheck": {
+    "siteOperatorQueriesReturnedMatchingDomainResults": false,
+    "googleIndexStatus": "UNKNOWN — verify with URL Inspection in the owner's Search Console property",
+    "averageSearchPosition": "NOT_AVAILABLE — Search Console Performance data not available in this session"
+  },
+  "runtime": {
+    "newPhase6LoaderSyntax": "PASS",
+    "zipIntegrity": "PASS",
+    "liveGitHubPagesBrowserTest": "BLOCKED_BY_RUNTIME_NETWORK_POLICY",
+    "twoDeviceViewerCount": "NOT_APPLICABLE — user requested no backend"
+  },
+  "remainingOwnerActions": [
+    "Apply the four small Phase 6 integration edits described in REMAINING-INTEGRATION-README.md",
+    "Verify the GitHub Pages deployment in a real browser and test mobile, watchlist and offline behaviour",
+    "Verify Search Console ownership and submit sitemap.xml",
+    "Refresh movie figures from current named sources before calling the collection snapshot live"
+  ]
+}

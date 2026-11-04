@@ -1,6 +1,8 @@
-For About, Contact, Methodology, Privacy and 404 pages that do NOT load movies.js,
-add the following immediately before </body>:
+For about.html, contact.html, methodology.html, privacy.html and 404.html:
+Add this one line immediately before </body>:
 
-<script defer src="phase6.js"></script>
+<script defer src="phase6-loader.js"></script>
 
-Do not add this tag to pages that already load movies.js with the Phase 6 loader appended.
+Do not add this to index.html, rankings.html, compare.html, release-calendar.html,
+or any movie-detail page. Those pages load movies.js; the movies.js append snippet
+loads phase6-loader.js there.

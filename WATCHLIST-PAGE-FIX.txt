@@ -1,0 +1,11 @@
+In watchlist.html, replace this existing script tag:
+
+<script src="phase6.js" defer></script>
+
+with:
+
+<script src="phase6-loader.js" defer></script>
+
+Keep the existing movies.js and phase3.js script tags. The new loader adds phase6.css
+first, then loads phase6.js. This makes Watchlist buttons, pills and empty states match
+VS Movie Hub's intended styling.
