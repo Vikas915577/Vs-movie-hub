@@ -1,0 +1,48 @@
+/* VS Movie Hub · Phase 6 additions. Existing Phase 3 visual system remains the base. */
+.vsm-live-view{display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;min-height:28px;padding:5px 9px;border:1px solid #2b5a50;border-radius:999px;background:rgba(35,93,79,.17);color:#dcebe7;font-size:9px;white-space:nowrap}
+.vsm-live-dot{width:7px;height:7px;border-radius:50%;background:#72d7c4;box-shadow:0 0 9px rgba(114,215,196,.75)}
+.vsm-live-label{font-size:8px;letter-spacing:.8px;color:#8fe2d1}
+.vsm-live-copy{font-size:8px;color:#b6c7c2;letter-spacing:.2px}
+.vsm-live-view[data-connection="offline"]{border-color:#6a4d2e;background:rgba(106,77,46,.15)}
+.vsm-live-view[data-connection="offline"] .vsm-live-dot{background:#d5a45e;box-shadow:none}
+.vsm-live-view[data-connection="offline"] .vsm-live-label{color:#e2bf83}
+.vsm-watchlist-nav{display:inline-flex;align-items:center;gap:6px}
+.vsm-nav-count{display:inline-grid;place-items:center;min-width:17px;height:17px;padding:0 4px;border-radius:99px;background:#302719;color:#f2bd55;font-size:9px;font-weight:800}
+.vsm-card-actions,.vsm-list-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.vsm-action-button{min-height:31px;padding:6px 10px;border:1px solid #3a414c;border-radius:8px;background:#171d27;color:#dbe0e7;font:600 10px/1.2 'DM Sans',Arial,sans-serif;cursor:pointer}
+.vsm-action-button:hover,.vsm-action-button:focus-visible{border-color:#9a783d;color:#ffe0a0;outline:none}
+.vsm-action-button.is-saved{border-color:#5b4a2c;color:#f2bd55;background:#211c14}
+.vsm-action-button.is-remove{color:#dfb8a5}
+.vsm-share-button{color:#f2bd55}
+.vsm-detail-actions{margin:16px 0 20px}
+.vsm-list-section{margin:28px 0 40px}
+.vsm-list-section h2{font:700 clamp(23px,3vw,30px)/1.2 'Space Grotesk',Arial,sans-serif;margin:0 0 6px}
+.vsm-list-section>p{color:#9aa5b4;font-size:12px;margin:0 0 16px}
+.vsm-list-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.vsm-list-card{display:grid;grid-template-columns:94px minmax(0,1fr);min-height:130px;border:1px solid #28303d;border-radius:13px;background:#121720;overflow:hidden}
+.vsm-list-poster{position:relative;display:block;background:#202735;min-height:130px}
+.vsm-list-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vsm-poster-fallback{display:none;position:absolute;inset:0;align-items:center;justify-content:center;padding:8px;text-align:center;color:#f2d79f;font-size:11px;background:linear-gradient(145deg,#33303a,#151923)}
+.vsm-list-poster img:not([src]),.vsm-list-poster img[src=""]{display:none}
+.vsm-list-poster img[hidden] + .vsm-poster-fallback{display:flex}
+.vsm-list-copy{padding:11px;min-width:0}
+.vsm-list-status{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:#f2bd55;margin:0 0 4px}
+.vsm-list-copy h3{font:600 14px/1.25 'Space Grotesk',Arial,sans-serif;margin:0 0 5px}
+.vsm-list-copy>p:not(.vsm-list-status){color:#9aa5b4;font-size:9px;margin:0}
+.vsm-empty{padding:25px 15px;border:1px dashed #3a414c;border-radius:12px;text-align:center;color:#9aa5b4;font-size:12px}
+.vsm-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}
+.vsm-secondary-button{border:1px solid #343c49;background:#121720;color:#b7c0cc;border-radius:9px;padding:8px 11px;font-size:10px;cursor:pointer}
+.vsm-secondary-button:disabled{opacity:.4;cursor:not-allowed}
+.vsm-install-button{border:0;background:#f2bd55;color:#17120a;border-radius:9px;padding:9px 12px;font-size:10px;font-weight:800;cursor:pointer}
+.vsm-toast{position:fixed;z-index:100;left:50%;bottom:22px;transform:translate(-50%,12px);opacity:0;pointer-events:none;max-width:calc(100% - 32px);padding:10px 14px;border:1px solid #66512d;border-radius:10px;background:#181b21;color:#f7e2b9;font-size:11px;box-shadow:0 8px 28px #0008;transition:opacity .2s,transform .2s}
+.vsm-toast.is-visible{opacity:1;transform:translate(-50%,0)}
+@media(max-width:650px){
+ .vsm-live-view{gap:4px;margin-left:auto;min-height:26px;padding:4px 7px}
+ .vsm-live-copy{display:none}
+ .vsm-watchlist-nav{justify-content:space-between}
+ .vsm-list-grid{grid-template-columns:1fr}
+ .vsm-list-card{grid-template-columns:88px minmax(0,1fr)}
+ .vsm-card-actions{gap:6px}
+ .vsm-action-button{min-height:32px;padding:7px 9px}
+}
+@media(max-width:380px){.vsm-live-view{padding:4px 6px}.vsm-live-label{font-size:7px}}

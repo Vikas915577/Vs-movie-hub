@@ -1,0 +1,3 @@
+Add this paragraph to privacy.html:
+
+Watchlist and recently viewed: VS Movie Hub stores saved movie slugs and recently viewed movie slugs in local browser storage on your device. This information is not sent to a VS Movie Hub server or synced between devices. You can remove saved items or clear the recent list from the Watchlist page, or clear this site's browser storage in your browser settings.

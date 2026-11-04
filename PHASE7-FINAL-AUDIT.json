@@ -1,0 +1,51 @@
+{
+  "phase": 7,
+  "title": "Final release hardening audit",
+  "repo": "Vikas915577/Vs-movie-hub",
+  "branch": "main",
+  "commitAudited": "1e814bcf51874d35ecb19af7b90fa5cd4c30d475",
+  "auditDate": "2026-11-04",
+  "verifiedFromRepoTreeAndFetchedFiles": {
+    "phase4SeoFilesPresent": true,
+    "movieDetailPages": 20,
+    "movieDetailFileLinksMatchFlatNamingConvention": true,
+    "livePresenceFilesPresentButNotIntegrated": true,
+    "moviesJsDoesNotLoadPhase5Presence": true,
+    "indexDoesNotLoadLivePresence": true,
+    "serviceWorkerAbsentBeforePhase7": true,
+    "manifestNotLinkedInFetchedIndexHead": true,
+    "manifestOldIconPath": "assets/favicon.svg",
+    "actualIconPath": "favicon.svg",
+    "assetsDirectoryInRepoRoot": false
+  },
+  "repairsInThisBundle": [
+    "Browser-only local Watchlist and Recently Viewed",
+    "Native share with clipboard fallback",
+    "Honest current-page LIVE status, no invented visitor count",
+    "Manifest link injection and corrected manifest icon paths",
+    "192px and 512px PWA icons",
+    "Root service worker with static pre-cache, network-first navigation and offline fallback"
+  ],
+  "notImplementedByUserInstruction": [
+    "No Supabase project activation",
+    "No real-time visitor count or visitor analytics backend",
+    "No database or API key use"
+  ],
+  "knownLimitations": [
+    "Global concurrent visitor count cannot be accurate without a backend or external counting service.",
+    "Watchlist and recent history are per browser/device and can be cleared by the user or browser storage cleanup.",
+    "External poster images and web fonts may not be available offline if not already cached by the browser.",
+    "Movie collection snapshot remains dated 4 Nov 2026; a new source-verified data refresh is separate from this UI/PWA patch.",
+    "Google Search Console ownership verification remains a manual site-owner task.",
+    "GitHub production deployment was not performed from this session; write requests previously returned 403."
+  ],
+  "testStatus": {
+    "javascriptSyntax": "PASS",
+    "manifestJson": "PASS",
+    "swPrecachePathsAgainstAuditedRepoTree": "PASS",
+    "watchlistStorageLogicStaticChecks": "PASS",
+    "offlineStrategyStaticChecks": "PASS",
+    "liveTwoDeviceCount": "NOT_APPLICABLE_NO_BACKEND",
+    "productionMobileAndOfflineTest": "PENDING_AFTER_UPLOAD"
+  }
+}

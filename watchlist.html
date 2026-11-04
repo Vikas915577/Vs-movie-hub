@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12"><meta name="robots" content="noindex,follow">
+  <meta name="description" content="Your saved movies and recently viewed box-office reports on this device.">
+  <link rel="canonical" href="https://vikas915577.github.io/Vs-movie-hub/watchlist.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="phase3.css"><link rel="stylesheet" href="phase6.css">
+  <title>My Watchlist | VS Movie Hub</title>
+</head>
+<body data-vsm-watchlist-page>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="VS Movie Hub home"><span class="brand-mark">VS</span><span><b>VS MOVIE HUB</b><small>EVERY FILM. EVERY COLLECTION.</small></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav id="mainNav" aria-label="Main navigation"><a href="index.html">Home</a><a href="rankings.html">Rankings</a><a href="compare.html">Compare</a><a href="release-calendar.html">Release Calendar</a><a class="vsm-watchlist-nav active" href="watchlist.html">Watchlist <span class="vsm-nav-count">0</span></a></nav>
+  </header>
+  <main class="wrap subpage">
+    <a class="backlink" href="index.html">← Home</a>
+    <section class="page-head"><p class="eyebrow">YOUR CINEMA SHORTLIST</p><h1>My <em>Watchlist</em></h1><p>Save movies on this device and come back to their box-office reports.</p></section>
+    <div class="plain-panel"><p><b>Private to this browser:</b> saved movies and recent views stay in this device's browser storage. They do not sync to another phone or get sent to a server.</p><div class="vsm-toolbar"><button id="vsmInstallApp" class="vsm-install-button" type="button" hidden>Install VS Movie Hub</button><button id="vsmClearSaved" class="vsm-secondary-button" type="button" data-vsm-clear="saved">Clear watchlist</button><button id="vsmClearRecent" class="vsm-secondary-button" type="button" data-vsm-clear="recent">Clear recently viewed</button></div></div>
+    <section class="vsm-list-section"><h2>Saved movies</h2><p>Your personal shortlist, stored only on this browser.</p><div id="vsmSavedGrid" class="vsm-list-grid"></div><p class="vsm-empty" data-vsm-empty="vsmSavedGrid" hidden>No saved movies yet. Tap “♡ Save” on any movie card to add one.</p></section>
+    <section class="vsm-list-section"><h2>Recently viewed</h2><p>The latest movie reports opened on this device.</p><div id="vsmRecentGrid" class="vsm-list-grid"></div><p class="vsm-empty" data-vsm-empty="vsmRecentGrid" hidden>No recently viewed movies yet. Open a movie report and it will appear here.</p></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="index.html"><span class="brand-mark">VS</span><span><b>VS MOVIE HUB</b><small>EVERY FILM. EVERY COLLECTION.</small></span></a><div class="footer-links"><a href="about.html">About</a><a href="methodology.html">Methodology</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div></div></footer>
+  <script src="movies.js" defer></script><script src="phase3.js" defer></script><script src="phase6.js" defer></script>
+</body></html>
